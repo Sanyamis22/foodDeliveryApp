@@ -1,11 +1,18 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {clearAddFood} from '../../store/foodSlice';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+
+  const _handleLogOut = () => {
+    dispatch(clearAddFood());
+  };
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <Pressable onPress={_handleLogOut}>
+      <Text>logout</Text>
+    </Pressable>
   );
 };
 

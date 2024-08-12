@@ -1,15 +1,15 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {store} from './src/store/store';
-import Home from './src/screens/home-page/Home';
-import AddForm from './src/screens/add-form/AddForm';
+import {persistor, store} from './src/store/store';
 import Routes from './src/navigation/Routes';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const App = () => {
   return (
     <Provider store={store}>
-      {/* <AddForm /> */}
-      <Routes />
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes />
+      </PersistGate>
     </Provider>
   );
 };
