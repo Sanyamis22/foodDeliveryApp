@@ -1,27 +1,29 @@
 import {
-  FlatList,
   StyleSheet,
   Text,
   View,
+  FlatList,
   Image,
-  Pressable,
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {submitCartItem} from '../../store/foodSlice';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../../components/atom/Header';
 
-const Home = () => {
+const Cart = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {foodList} = useSelector(state => state.food);
+  const {foodList, cartList} = useSelector(state => state.food);
+  console.log('cartList====>', cartList);
+  console.log('foodList====>', foodList);
 
-  const _handleAddToCart = id => {
-    dispatch(submitCartItem(id));
-  };
+  const matchedItems = cartList
+    .map(id => foodList.find(item => item.id === id))
+    .filter(item => item !== undefined);
+
+  console.log('matchedItems====>', matchedItems);
 
   const _renderItem = item => {
     return (
@@ -34,20 +36,16 @@ const Home = () => {
             Category : {item.item.category}{' '}
           </Text>
           <Text style={styles.subDetails}> Price : {item.item.price} </Text>
-          <Pressable
-            style={styles.buttonConatiner}
-            onPress={() => _handleAddToCart(item.item.id)}>
-            <Text style={styles.textStyle}>Add</Text>
-          </Pressable>
         </View>
       </View>
     );
   };
+
   return (
-    <SafeAreaView style={styles.mainConatiner}>
-      <Header title="Home" />
+    <SafeAreaView>
+      <Header title="Cart" />
       <FlatList
-        data={foodList}
+        data={matchedItems}
         renderItem={_renderItem}
         keyExtractor={item => item.foodName}
       />
@@ -55,7 +53,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Cart;
 
 const styles = StyleSheet.create({
   image: {

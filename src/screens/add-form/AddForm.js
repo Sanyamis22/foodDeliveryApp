@@ -15,6 +15,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useDispatch} from 'react-redux';
 import {addFood} from '../../store/foodSlice';
+import Header from '../../components/atom/Header';
 
 const FoodForm = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const FoodForm = () => {
 
   return (
     <SafeAreaView>
+      <Header title="Add Form" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Add Food Item</Text>
 

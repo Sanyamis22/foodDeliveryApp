@@ -4,7 +4,6 @@ const initialState = {
   foodList: [],
   nextId: 1,
   cartList: [],
-  cartId: 1,
 };
 
 const foodSlice = createSlice({
@@ -21,12 +20,10 @@ const foodSlice = createSlice({
       state.nextId += 1;
     },
     submitCartItem: (state, action) => {
-      const CartItem = {
-        cartId: state.cartId,
-        ...action.payload,
-      };
-      state.cartList.push(CartItem);
-      state.cartId += 1;
+      console.log('action===>', action);
+
+      state.cartList.push(action.payload);
+      //state.cartId += 1;
     },
     clearAddFood: state => {
       return initialState;
@@ -34,6 +31,6 @@ const foodSlice = createSlice({
   },
 });
 
-export const {addFood, clearAddFood} = foodSlice.actions;
+export const {addFood, clearAddFood, submitCartItem} = foodSlice.actions;
 
 export default foodSlice.reducer;
