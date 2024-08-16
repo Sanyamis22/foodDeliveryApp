@@ -15,25 +15,23 @@ const Tab = createBottomTabNavigator();
 const Routes = () => {
   enableScreens();
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="home-routes"
-          component={HomeRoutes}
-          options={{headerShown: false}}
-        />
-        <Tab.Screen
-          name="Form"
-          component={FoodForm}
-          options={{headerShown: false}}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{headerShown: false}}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="home-routes"
+        component={HomeRoutes}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Form"
+        component={FoodForm}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{headerShown: false}}
+      />
+    </Tab.Navigator>
   );
 };
 
